@@ -1,6 +1,6 @@
 // Source: public/src/js/app.js
 var defaultLanguage = localStorage.getItem('insight-language') || 'en';
-var defaultCurrency = localStorage.getItem('insight-currency') || 'LTC';
+var defaultCurrency = localStorage.getItem('insight-currency') || 'BERY';
 
 angular.module('insight',[
   'ngAnimate',
@@ -269,10 +269,10 @@ angular.module('insight.currency').controller('CurrencyController',
 
         if (this.symbol === 'USD') {
           response = _roundFloat((value * this.factor), 2);
-        } else if (this.symbol === 'lites') {
+        } else if (this.symbol === 'BeryFlowers') {
           this.factor = 1000;
           response = _roundFloat((value * this.factor), 5);
-        } else if (this.symbol === 'photons') {
+        } else if (this.symbol === 'BerySeeds') {
           this.factor = 1000000;
           response = _roundFloat((value * this.factor), 2);
         } else {
@@ -296,9 +296,9 @@ angular.module('insight.currency').controller('CurrencyController',
         Currency.get({}, function(res) {
           $rootScope.currency.factor = $rootScope.currency.bitstamp = res.data.bitstamp;
         });
-      } else if (currency === 'lites') {
+      } else if (currency === 'BeryFlowers') {
         $rootScope.currency.factor = 1000;
-      } else if (currency === 'photons') {
+      } else if (currency === 'BerySeeds') {
         $rootScope.currency.factor = 1000000;
       } else {
         $rootScope.currency.factor = 1;
@@ -360,7 +360,7 @@ angular.module('insight.system').controller('HeaderController',
     $rootScope.currency = {
       factor: 1,
       bitstamp: 0,
-      symbol: 'LTC'
+      symbol: 'BERY'
     };
 
     $scope.menu = [{
