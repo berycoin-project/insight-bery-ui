@@ -20,10 +20,10 @@ angular.module('insight.currency').controller('CurrencyController',
 
         if (this.symbol === 'USD') {
           response = _roundFloat((value * this.factor), 2);
-        } else if (this.symbol === 'lites') {
+        } else if (this.symbol === 'BeryFlowers') {
           this.factor = 1000;
           response = _roundFloat((value * this.factor), 5);
-        } else if (this.symbol === 'photons') {
+        } else if (this.symbol === 'BerySeeds') {
           this.factor = 1000000;
           response = _roundFloat((value * this.factor), 2);
         } else {
