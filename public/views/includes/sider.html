@@ -1,0 +1,89 @@
+
+        <!--
+          Tip 1: You can change the color of the sidebar using: data-color="blue | green | orange | red | yellow"
+      -->
+        <div class="logo">
+            <a href="http://www.creative-tim.com" class="simple-text logo-mini">
+                BE
+            </a>
+            <a href="http://www.creative-tim.com" class="simple-text logo-normal">
+                BERYEXPLORER
+            </a>
+            <div class="navbar-minimize">
+                <button id="minimizeSidebar" class="btn btn-simple btn-icon btn-neutral btn-round">
+                    <i class="now-ui-icons text_align-center visible-on-sidebar-regular"></i>
+                    <i class="now-ui-icons design_bullet-list-67 visible-on-sidebar-mini"></i>
+                </button>
+            </div>
+        </div>
+        <div class="sidebar-wrapper">
+            <div class="user">
+                <div class="photo">
+                    <img src="../assets/img/berycoinlogo.png" />
+                </div>
+                <div class="info">
+                    <a data-toggle="collapse" class="collapsed">
+                        <span>
+                            Explorer
+                        </span>
+                    </a>
+                </div>
+            </div>
+            <ul class="nav">
+                    <li>
+                            <a href="#">
+                                <i class="fa fa-home"></i>
+                                <p>Home</p>
+                            </a>
+                        </li>
+                <li data-ng-repeat="item in menu" ui-route="{{item.link}}" data-ng-class="{active: $uiRoute}">
+                    <a href="{{item.link}}">
+                        <i class="now-ui-icons media-2_sound-wave"></i>
+                        <p>{{item.title|translate}}</p>
+                    </a>
+                </li>
+                <li>
+                    <a data-ng-click="openScannerModal()">
+                        <i class="now-ui-icons design_app"></i>
+                        <p>Scan</p>
+                    </a>
+                </li>
+                <li  data-ng-controller="CurrencyController">
+                    <a data-toggle="collapse" href="#pagesExamples">
+                        <i class="now-ui-icons design_image"></i>
+                        <p>
+                                {{currency.symbol}}
+                            <b class="caret"></b>
+                        </p>
+                    </a>
+                    <div class="collapse " id="pagesExamples">
+                        <ul class="nav">
+                            <li>
+                                <a class="dropdown-item" data-ng-click="setCurrency('USD')" data-ng-class="{active: currency.symbol == 'USD'}">
+                                    <span class="sidebar-mini-icon">U</span>
+                                    <span class="sidebar-normal"> USD </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" data-ng-click="setCurrency('BERY')" data-ng-class="{active: currency.symbol == 'BERY'}">
+                                    <span class="sidebar-mini-icon">B</span>
+                                    <span class="sidebar-normal"> BERY </span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="dropdown-item" data-ng-click="setCurrency('BeryFlowers')" data-ng-class="{active: currency.symbol == 'BeryFlowers'}">
+                                    <span class="sidebar-mini-icon">F</span>
+                                    <span class="sidebar-normal"> BERYFLOWERS </span>
+                                </a>
+                            </li>
+                            <li>
+                                    <a class="dropdown-item" data-ng-click="setCurrency('BerySeeds')" data-ng-class="{active: currency.symbol == 'BerySeeds'}">
+                                    <span class="sidebar-mini-icon">F</span>
+                                            <span class="sidebar-normal"> BERYSEEDS </span>
+                                        </a>
+                            </li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+        </div>

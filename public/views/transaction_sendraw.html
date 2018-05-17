@@ -1,10 +1,13 @@
-<section data-ng-controller="SendRawTransactionController">
-  <div class="page-header">
-    <h1>
-      <span translate>Broadcast Raw Transaction</span>
-    </h1>
+<section class="card" data-ng-controller="SendRawTransactionController">
+  <div class="card-header">
+    <div class="card-title">
+      <h1>
+        <span translate>Broadcast Raw Transaction</span>
+      </h1>
+    </div> 
   </div>
-  <div class="row">
+  <div class="card-body">
+    <div class="row">
     <div class="col-xs-12 col-md-8">
       <form name="txForm" class="form-horizontal" role="form" novalidate>
         <div class="form-group"
@@ -50,6 +53,7 @@
         This form can be used to broadcast a raw transaction in hex format over
         the Berycoin network.
       </p>
+    </div>
     </div>
   </div>
 </section>

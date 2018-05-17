@@ -9,7 +9,14 @@
 	<title data-ng-bind="$root.title + $root.titleDetail + ' | Insight'">Insight</title>
 	<meta name="keywords" content="berycoins, transactions, blocks, address, block chain, best block, mining difficulty, hash serialized">
 	<meta name="description" content="Berycoin Insight. View detailed information on all berycoin transactions and block. {{ $root.title + $root.titleDetail }}">
-	<link rel="shortcut icon" href="img/icons/favicon.ico" type="image/x-icon">
+  <link rel="shortcut icon" href="img/icons/favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+  <link href="https://use.fontawesome.com/releases/v5.0.6/css/all.css" rel="stylesheet">
+  <!-- CSS Files -->
+  <link href="../assets/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="../assets/css/now-ui-dashboard.css?v=1.0.1" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="../assets/demo/demo.css" rel="stylesheet" />
 	<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Ubuntu:300,400,500,700,400italic">
 	<link rel="stylesheet" href="css/main.min.css">
 </head>
@@ -39,37 +46,126 @@
       </div>
     </script>
   </div>
-	<div id="wrap">
-		<div class="navbar navbar-default navbar-fixed-top" data-ng-include="'views/includes/header.html'" role='navigation'></div>
-		<section class="container" data-ng-view></section>
-	</div>
-	<div id="footer" role="navigation">
-    <div class="container" data-ng-controller="FooterController">
-      <div class="links m20t pull-left">
-        <span class="languages" ng-show="availableLanguages.0">
-          [
-          <a href="#"
-            ng-click="setLanguage(l.isoCode)"
-            ng-class="{'selected': defaultLanguage == l.isoCode}"
-            ng-repeat="l in availableLanguages">
-            <span ng-show="!$first"> &middot; </span> {{l.name}}
-          </a>
-          ]
-        </span>
-        &nbsp;
-        [
-        <a href="messages/verify" translate>verify message</a>
-        <span> &middot; </span>
-        <a href="tx/send" translate>broadcast transaction</a>
-        ]
-      </div>
-      <a class="insight m10v pull-right" target="_blank" href="http://insight.is">insight <small>API v{{version}}</small></a>
+  <div class="wrapper ">
+    <div class="sidebar" data-color="green"  data-ng-controller="HeaderController" data-ng-include="'views/includes/sider.html'">
+    </div>
+    <div class="main-panel">
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute bg-primary fixed-top" data-ng-include="'views/includes/header.html'" role="navigation"></nav>
+        <!-- End Navbar -->
+        <div class="panel-header">
+            <div class="header text-center">
+                <h2 class="title">Berycoin Chain Explorer</h2>
+                <p class="category"> This is a berychain explorer, you can search for transactions/addresses/blocks 
+                    </br>
+                    <a target="_blank" href="http://github.com/berycoin-project/beryexplorer">Github Repo</a>
+                    </br>Powered by Insight
+                    <a target="_blank" href="http://insight.is">Visit Insight</a>.
+                </p>
+            </div>
+        </div>
+        <div class="content">
+            <div class="row">
+              <div class="col-lg-12">
+                  <div class="card">
+                      <div class="card-header">
+                          <h3 class="card-title">
+                              BeryExplorer
+                          </h3>
+                      </div>
+                      <div class="card-body">
+                            <form id="search-form" data-ng-controller="SearchController" role="search" data-ng-submit="search()">
+                                    <div class="input-group no-border" data-ng-class="{'has-error': badQuery}">
+                                        <input id="search" type="text" class="form-control" data-ng-model="q" data-ng-class="{'loading': loading}" placeholder="{{'Search for block, transaction or address'|translate}}"
+                                            data-ng-submit="search()" focus="true">
+                                        <span class="input-group-addon">
+                                            <i class="now-ui-icons ui-1_zoom-bold"></i>
+                                        </span>
+                                        <div class="no_matching text-danger" data-ng-show="badQuery" translate>No matching records found!</div>
+                                    </div>
+                            </form>
+                        <section data-ng-view></section>
+                        <div id="footer" role="navigation">
+                                <div class="container" data-ng-controller="FooterController">
+                                  <div class="links m20t pull-left">
+                                    <span class="languages" ng-show="availableLanguages.0">
+                                      [
+                                      <a href="#"
+                                        ng-click="setLanguage(l.isoCode)"
+                                        ng-class="{'selected': defaultLanguage == l.isoCode}"
+                                        ng-repeat="l in availableLanguages">
+                                        <span ng-show="!$first"> &middot; </span> {{l.name}}
+                                      </a>
+                                      ]
+                                    </span>
+                                    &nbsp;
+                                    [
+                                    <a href="messages/verify" translate>verify message</a>
+                                    <span> &middot; </span>
+                                    <a href="tx/send" translate>broadcast transaction</a>
+                                    ]
+                                  </div>
+                                  <a class="insight m10v pull-right" target="_blank" href="http://insight.is">insight <small>API v{{version}}</small></a>
+                                </div>
+                            </div>
+                      </div>
+                  </div>
+                  
+              </div>
+            </div>
+        </div>
     </div>
   </div>
+  
   <script language="javascript">window.apiPrefix = '/api';</script>
 	<script src="/socket.io/socket.io.js"></script>
 	<script src="js/vendors.min.js"></script>
 	<script src="js/angularjs-all.min.js"></script>
-	<script src="js/main.min.js"></script>
+  <script src="js/main.min.js"></script>
+  <script src="../assets/js/core/jquery.min.js"></script>
+<script src="../assets/js/core/popper.min.js"></script>
+<script src="../assets/js/core/bootstrap.min.js"></script>
+<script src="../assets/js/plugins/perfect-scrollbar.jquery.min.js"></script>
+<script src="../assets/js/plugins/moment.min.js"></script>
+<!--  Plugin for Switches, full documentation here: http://www.jque.re/plugins/version3/bootstrap.switch/ -->
+<script src="../assets/js/plugins/bootstrap-switch.js"></script>
+<!--  Plugin for Sweet Alert -->
+<script src="../assets/js/plugins/sweetalert2.min.js"></script>
+<!-- Forms Validations Plugin -->
+<script src="../assets/js/plugins/jquery.validate.min.js"></script>
+<!--  Plugin for the Wizard, full documentation here: https://github.com/VinceG/twitter-bootstrap-wizard -->
+<script src="../assets/js/plugins/jquery.bootstrap-wizard.js"></script>
+<!--	Plugin for Select, full documentation here: http://silviomoreto.github.io/bootstrap-select -->
+<script src="../assets/js/plugins/bootstrap-selectpicker.js"></script>
+<!--  Plugin for the DateTimePicker, full documentation here: https://eonasdan.github.io/bootstrap-datetimepicker/ -->
+<script src="../assets/js/plugins/bootstrap-datetimepicker.js"></script>
+<!--  DataTables.net Plugin, full documentation here: https://datatables.net/    -->
+<script src="../assets/js/plugins/jquery.dataTables.min.js"></script>
+<!--	Plugin for Tags, full documentation here: https://github.com/bootstrap-tagsinput/bootstrap-tagsinputs  -->
+<script src="../assets/js/plugins/bootstrap-tagsinput.js"></script>
+<!-- Plugin for Fileupload, full documentation here: http://www.jasny.net/bootstrap/javascript/#fileinput -->
+<script src="../assets/js/plugins/jasny-bootstrap.min.js"></script>
+<!--  Full Calendar Plugin, full documentation here: https://github.com/fullcalendar/fullcalendar    -->
+<script src="../assets/js/plugins/fullcalendar.min.js"></script>
+<!-- Vector Map plugin, full documentation here: http://jvectormap.com/documentation/ -->
+<script src="../assets/js/plugins/jquery-jvectormap.js"></script>
+<!--  Plugin for the Sliders, full documentation here: http://refreshless.com/nouislider/ -->
+<script src="../assets/js/plugins/nouislider.min.js"></script>
+<!--  Google Maps Plugin    -->
+<script src="https://maps.googleapis.com/maps/api/js?key=YOUR_KEY_HERE"></script>
+<!-- Chart JS -->
+<script src="../assets/js/plugins/chartjs.min.js"></script>
+<!--  Notifications Plugin    -->
+<script src="../assets/js/plugins/bootstrap-notify.js"></script>
+<!-- Control Center for Now Ui Dashboard: parallax effects, scripts for the example pages etc -->
+<script src="../assets/js/now-ui-dashboard.js?v=1.0.1"></script>
+<!-- Now Ui Dashboard DEMO methods, don't include it in your project! -->
+<script src="../assets/demo/demo.js"></script>
+<script>
+    $(document).ready(function () {
+        // Javascript method's body can be found in assets/assets-for-demo/js/demo.js
+        demo.initChartPageCharts();
+    });
+</script>
 </body>
 </html>

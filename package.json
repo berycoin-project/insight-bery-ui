@@ -1,8 +1,11 @@
 {
   "name": "insight-bery-ui",
   "description": "An open-source frontend for the Insight API. The Insight API provides you with a convenient, powerful and simple way to query and broadcast data on the berycoin network and build your own services with it.",
-  "version": "5.0.05",
-  "repository": "git://github.com/berycoin-project/insight-bery-ui.git",
+  "version": "5.0.5",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/berycoin-project/insight-bery-ui.git"
+  },
   "contributors": [
     {
       "name": "Matias Alejo Garcia",
@@ -52,5 +55,35 @@
     "grunt-css": "~0.5.4",
     "grunt-markdown": "~0.5.0",
     "grunt-angular-gettext": "^0.2.15"
-  }
+  },
+  "gitHead": "db40146615ed76b464c96adc32ee68741fad2e9d",
+  "_id": "insight-bery-ui@5.0.5",
+  "_npmVersion": "5.7.1",
+  "_nodeVersion": "4.8.7",
+  "_npmUser": {
+    "name": "berycoin",
+    "email": "ronald.n.mcatee@gmail.com"
+  },
+  "dist": {
+    "integrity": "sha512-Myqrr8a2Gw+2wwuPlezJ5kByWQpfYo4aVVnctUoTgVUm0nbX6p4hel+MVyYvGmCYkbEymqxfsrDfQDcm3kLQ8A==",
+    "shasum": "07c25edadfe33ab2e1aeab71627664332ca43be0",
+    "tarball": "https://registry.npmjs.org/insight-bery-ui/-/insight-bery-ui-5.0.5.tgz",
+    "fileCount": 554,
+    "unpackedSize": 8729609
+  },
+  "maintainers": [
+    {
+      "name": "berycoin",
+      "email": "ronald.n.mcatee@gmail.com"
+    }
+  ],
+  "directories": {},
+  "_npmOperationalInternal": {
+    "host": "s3://npm-registry-packages",
+    "tmp": "tmp/insight-bery-ui_5.0.5_1520707588007_0.6390125819899661"
+  },
+  "_shasum": "07c25edadfe33ab2e1aeab71627664332ca43be0",
+  "_resolved": "https://registry.npmjs.org/insight-bery-ui/-/insight-bery-ui-5.0.5.tgz",
+  "_from": "insight-bery-ui@latest",
+  "readme": "ERROR: No README data found!"
 }

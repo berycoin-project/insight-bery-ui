@@ -52,7 +52,7 @@ h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
   position: fixed;
   margin: 0;
   padding: 0;
-  top: 63px;
+  top: 5px;
   left: 0;
   right: 0;
   z-index: 99999;
@@ -682,7 +682,7 @@ a.v_highlight_more {
   width: 100%;
   background: #fff;
   position: fixed;
-  top: 64px;
+  top: 0px;
   left: 0;
   text-align: center;
   z-index: 1000;
@@ -780,7 +780,7 @@ a.v_highlight_more {
     padding: 50px 15px 0;
   }
   #ngProgress-container {
-    top: 50px;
+    top: 5px;
   }
   body {
     font-size: 11px;
