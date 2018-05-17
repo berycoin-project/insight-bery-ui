@@ -1,63 +1,89 @@
 <nav class="navbar navbar-expand-lg navbar-transparent  navbar-absolute bg-primary fixed-top">
-    <div class="container-fluid" data-ng-controller="HeaderController">
-        <div class="navbar-wrapper">
-            <div class="navbar-toggle">
-                <button type="button" class="navbar-toggler">
-                    <span class="navbar-toggler-bar bar1"></span>
-                    <span class="navbar-toggler-bar bar2"></span>
-                    <span class="navbar-toggler-bar bar3"></span>
-                </button>
-            </div>
-            <a class="navbar-brand" href=".">Explorer</a>
-        </div>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index"
-            aria-expanded="false" aria-label="Toggle navigation" data-ng-click="$root.isCollapsed = !$root.isCollapsed">
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
-            <span class="navbar-toggler-bar navbar-kebab"></span>
+  <div class="container-fluid" data-ng-controller="HeaderController">
+    <div class="navbar-wrapper">
+      <div class="navbar-toggle">
+        <button type="button" class="navbar-toggler">
+          <span class="navbar-toggler-bar bar1"></span>
+          <span class="navbar-toggler-bar bar2"></span>
+          <span class="navbar-toggler-bar bar3"></span>
         </button>
-        <div class="collapse navbar-collapse justify-content-end"  collapse="$root.isCollapsed" id="navigation">
-            <ul class="nav navbar-nav">
-                <li class="nav-item" data-ng-repeat="item in menu" ui-route="{{item.link}}" data-ng-class="{active: $uiRoute}">
-                  <a class="nav-link" href="{{item.link}}">
-                    <i class="now-ui-icons media-2_sound-wave"></i>
-                    <p>
-                      {{item.title|translate}}
-                    </p>
-                  </a>
-                </li>
-              </ul>
-              <span class="hidden-xs navbar-form navbar-left" data-ng-include src="'views/includes/search.html'"></span>
-          
-          
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <div class="status" data-ng-controller="StatusController">
-                        <i class="now-ui-icons media-2_sound-wave"></i>
-                      <div data-ng-init="getSync()">
-                        <span class="t text-danger"  data-ng-show="sync.error" tooltip="{{sync.error}}" tooltip-placement="bottom"> 
-                            <span  class="glyphicon glyphicon-warning-sign"></span>
-                            ERROR 
-                        </span>
-                        <span class="t" tooltip="{{sync.syncedBlocks}} / {{sync.blockChainHeight}} synced. {{sync.skippedBlocks || 0}} skipped" tooltip-placement="bottom" data-ng-show="sync.status==='syncing'"> 
-                          <span  class="glyphicon glyphicon-refresh icon-rotate"></span>
-                          {{sync.syncPercentage}}%
-                        </span>
-                        <span class="glyphicon glyphicon-ok" tooltip="Historic sync finished" tooltip-placement="bottom" data-ng-show="sync.status==='finished'"> </span>
-                      </div>
-                      &nbsp; &middot;
-                      <span data-ng-init="getStatus('Info')">
-                        <strong>{{'Conn'|translate}}</strong> {{info.connections}}
-                      </span> &middot;
-                      <strong>{{'Height'|translate}}</strong> {{totalBlocks || info.blocks}}
-                    </div>
-                </li>
-                <li>
-                    <a data-ng-click="openScannerModal()"><span class="glyphicon
-                        glyphicon-qrcode"></span> Scan</a>
-                  </li>
-                  <li class="nav-item dropdown" data-ng-controller="CurrencyController" data-ng-include="'views/includes/currency.html'"></li>
-            </ul>
-        </div>
+      </div>
+      <a class="navbar-brand" href=".">Explorer</a>
     </div>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navigation" aria-controls="navigation-index"
+      aria-expanded="false" aria-label="Toggle navigation" data-ng-click="$root.isCollapsed = !$root.isCollapsed">
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+      <span class="navbar-toggler-bar navbar-kebab"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" collapse="$root.isCollapsed" id="navigation">
+      <ul class="nav navbar-nav">
+        <li class="nav-item" data-ng-repeat="item in menu" ui-route="{{item.link}}" data-ng-class="{active: $uiRoute}">
+          <a class="nav-link" href="{{item.link}}">
+            <i class="now-ui-icons media-2_sound-wave"></i>
+            <p>
+              {{item.title|translate}}
+            </p>
+          </a>
+        </li>
+      </ul>
+      <form id="search-form" data-ng-controller="SearchController" role="search" data-ng-submit="search()">
+        <div class="input-group no-border" data-ng-class="{'has-error': badQuery}">
+          <input id="search" type="text" class="form-control" data-ng-model="q" data-ng-class="{'loading': loading}" placeholder="{{'Search for block, transaction or address'|translate}}"
+            data-ng-submit="search()" focus="true">
+          <span class="input-group-addon">
+            <i class="now-ui-icons ui-1_zoom-bold"></i>
+          </span>
+        </div>
+        <div class="no_matching text-danger" data-ng-show="badQuery" translate>No matching records found!</div>
+      </form>
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <div class="status" data-ng-controller="StatusController">
+            <i class="now-ui-icons media-2_sound-wave"></i>
+            <div data-ng-init="getSync()">
+              <span class="t text-danger" data-ng-show="sync.error" tooltip="{{sync.error}}" tooltip-placement="bottom">
+                <span class="glyphicon glyphicon-warning-sign"></span>
+                ERROR
+              </span>
+              <span class="t" tooltip="{{sync.syncedBlocks}} / {{sync.blockChainHeight}} synced. {{sync.skippedBlocks || 0}} skipped" tooltip-placement="bottom"
+                data-ng-show="sync.status==='syncing'">
+                <span class="glyphicon glyphicon-refresh icon-rotate"></span>
+                {{sync.syncPercentage}}%
+              </span>
+              <span class="glyphicon glyphicon-ok" tooltip="Historic sync finished" tooltip-placement="bottom" data-ng-show="sync.status==='finished'">
+              </span>
+            </div>
+            &nbsp; &middot;
+            <span data-ng-init="getStatus('Info')">
+              <strong>{{'Conn'|translate}}</strong> {{info.connections}}
+            </span> &middot;
+            <strong>{{'Height'|translate}}</strong> {{totalBlocks || info.blocks}}
+          </div>
+        </li>
+        <li>
+          <a data-ng-click="openScannerModal()">
+            <span class="glyphicon
+                        glyphicon-qrcode"></span> Scan</a>
+        </li>
+        <li class="nav-item dropdown" data-ng-controller="CurrencyController">
+            <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
+                <i class="now-ui-icons location_world"></i>
+                <p>
+                    <span class="d-lg-none d-md-block">
+                      {{currency.symbol}} 
+                    </span><span class="caret"></span>
+                    </p>
+            </a>
+            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+            
+                <a class="dropdown-item" data-ng-click="setCurrency('USD')" data-ng-class="{active: currency.symbol == 'USD'}">USD</a>
+                <a class="dropdown-item" data-ng-click="setCurrency('BERY')" data-ng-class="{active: currency.symbol == 'BERY'}">BERY</a>
+                <a class="dropdown-item" data-ng-click="setCurrency('BeryFlowers')" data-ng-class="{active: currency.symbol == 'BeryFlowers'}">BeryFlowers</a>
+                <a class="dropdown-item" data-ng-click="setCurrency('BerySeeds')" data-ng-class="{active: currency.symbol == 'BerySeeds'}">BerySeeds</a>
+            </div>
+        </li>
+      </ul>
+    </div>
+  </div>
 </nav>
