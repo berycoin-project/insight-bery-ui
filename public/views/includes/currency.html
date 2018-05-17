@@ -1,15 +1,18 @@
-<a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">
-    <i class="now-ui-icons location_world"></i>
-    <p>
-        <span class="d-lg-none d-md-block">
-          {{currency.symbol}} 
-        </span><span class="caret"></span>
-        </p>
+<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+  {{currency.symbol}} <span class="caret"></span>
 </a>
-<div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdownMenuLink">
+<ul class="dropdown-menu">
+  <li>
+  <a data-ng-click="setCurrency('USD')" data-ng-class="{active: currency.symbol == 'USD'}">USD</a>
+  </li>
+  <li>
+  <a data-ng-click="setCurrency('BERY')" data-ng-class="{active: currency.symbol == 'BERY'}">BERY</a>
+  </li>
+  <li>
+  <a data-ng-click="setCurrency('BeryFlowers')" data-ng-class="{active: currency.symbol == 'BeryFlowers'}">BeryFlowers</a>
+  </li> 
+  <li>
+  <a data-ng-click="setCurrency('BerySeeds')" data-ng-class="{active: currency.symbol == 'BerySeeds'}">BerySeeds</a>
+  </li>
+</ul>
 
-    <a class="dropdown-item" data-ng-click="setCurrency('USD')" data-ng-class="{active: currency.symbol == 'USD'}">USD</a>
-    <a class="dropdown-item" data-ng-click="setCurrency('BERY')" data-ng-class="{active: currency.symbol == 'BERY'}">BERY</a>
-    <a class="dropdown-item" data-ng-click="setCurrency('BeryFlowers')" data-ng-class="{active: currency.symbol == 'BeryFlowers'}">BeryFlowers</a>
-    <a class="dropdown-item" data-ng-click="setCurrency('BerySeeds')" data-ng-class="{active: currency.symbol == 'BerySeeds'}">BerySeeds</a>
-</div>
